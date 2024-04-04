@@ -1,40 +1,37 @@
 <script setup>
-import WelcomeItem from "./WelcomeItem.vue";
-import DocumentationIcon from "./icons/IconDocumentation.vue";
-import ToolingIcon from "./icons/IconTooling.vue";
-import EcosystemIcon from "./icons/IconEcosystem.vue";
-import CommunityIcon from "./icons/IconCommunity.vue";
-import SupportIcon from "./icons/IconSupport.vue";
 import { ref, onMounted } from "vue";
-
 import axios from "axios";
 
 const recipes = ref([]);
 
 onMounted(async () => {
   const recipeResp = await axios.get("https://dummyjson.com/recipes");
-  recipes.value = recipeResp.data.recipes.slice(0, 3);
+  recipes.value = recipeResp.data.recipes.slice(0, 10);
 });
 </script>
 
 <template>
-  <h1 class="title">TOP RECIPES</h1>
+  <h1 class="title">ALL DAY DINING MENU</h1>
   <div v-for="(recipe, id) in recipes" :key="id">
-    <h2 class="name">&starf;{{ recipe.name }}</h2>
+    <img :src="recipe.image" alt="foodImg" class="foodImg" />
+    <h2 class="name">
+      {{ recipe.name }} |
+      <span class="fakeprice">${{ recipe.cookTimeMinutes }}</span>
+    </h2>
 
     <h3 class="ing">
-      Ingredients :
+      Served with :
       <span v-for="(ingredients, id) in recipe.ingredients" :key="id">
         {{ ingredients }},
       </span>
     </h3>
-    <h3 class="ing">Instructions :</h3>
 
-    <ol>
-      <li v-for="(instructions, id) in recipe.instructions" :key="id">
-        {{ instructions }}
-      </li>
-    </ol>
+    <p>
+      CALORIES : {{ recipe.caloriesPerServing }} | RATING
+      {{ recipe.rating }} &starf; ( {{ recipe.reviewCount }} reviews)
+    </p>
+
+    <hr />
   </div>
 </template>
 
@@ -48,6 +45,16 @@ onMounted(async () => {
 }
 
 .ing {
+  font-style: italic;
+  color: #35495e;
+}
+
+.foodImg {
+  width: 25%;
+  padding-top: 10px;
+}
+
+.fakeprice {
   font-style: italic;
   color: #35495e;
 }

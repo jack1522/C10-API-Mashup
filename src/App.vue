@@ -14,7 +14,7 @@ import TheWelcome from "./components/TheWelcome.vue";
     />
 
     <div class="wrapper">
-      <HelloWorld msg="Welcome to Kim's first Vue Application" />
+      <HelloWorld msg="Dining with a Vue Exp" />
     </div>
   </header>
 
@@ -36,7 +36,7 @@ header {
 @media (min-width: 1024px) {
   header {
     display: flex;
-    place-items: center;
+
     padding-right: calc(var(--section-gap) / 2);
   }
 

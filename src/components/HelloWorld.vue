@@ -10,7 +10,10 @@ defineProps({
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
-    <h3>Using Axios to get recipes from API data.</h3>
+    <h3>
+      Using Axios to get data from an API crafting the perfect all day dining
+      menu experience with nutrition information and ratings.
+    </h3>
   </div>
 </template>
 
